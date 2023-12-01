@@ -12,11 +12,12 @@
 }
 
 .link {
-  color: inherit;
-  background-color: silver;
   padding: 10px 15px;
+  color: inherit;
+  font-size: 18px;
   border-radius: 15px;
   transition: 0.2s;
+  background-color: silver;
 
   @include hover {
     background-color: lightgray;
