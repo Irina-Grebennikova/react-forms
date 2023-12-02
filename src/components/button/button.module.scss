@@ -1,0 +1,13 @@
+@import '@/styles/mixins.scss';
+
+.button {
+  padding: 10px 20px;
+  border-radius: 15px;
+  color: #fff;
+  font-size: 18px;
+  background-color: cornflowerblue;
+
+  @include hover {
+    background-color: lighten($color: cornflowerblue, $amount: 10%);
+  }
+}

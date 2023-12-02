@@ -1,0 +1,58 @@
+.page {
+  padding: 7vh 0;
+}
+
+.title {
+  margin-bottom: 4vh;
+  text-align: center;
+
+  & > * {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 20px 0 20px 0;
+    font-size: 28px;
+    background-color: rgba($color: cornflowerblue, $alpha: 0.2);
+  }
+}
+
+.formField {
+  margin-bottom: 3vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.label {
+  flex: 0 1 25%;
+}
+
+.inputWrapper {
+  flex: auto;
+}
+
+.inputField {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: inherit;
+}
+
+.acceptField {
+  display: flex;
+  gap: 5px;
+  margin-top: 4vh;
+}
+
+.genderFields {
+  input {
+    margin-right: 5px;
+  }
+
+  label:first-of-type {
+    margin-right: 15px;
+  }
+}
+
+.submit {
+  margin-top: 3vh;
+  text-align: center;
+}

@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 
-import { PageLayout } from '@/components/page-layout';
+import { PageLayout } from '@/layouts/page-layout';
 import { MainPage } from '@/pages/main-page';
 import { ReactHookForm } from '@/pages/react-hook-form';
 import { UncontrolledForm } from '@/pages/uncontrolled-form';
