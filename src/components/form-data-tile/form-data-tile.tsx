@@ -7,6 +7,7 @@ function FormDataTile({ data }: { data: Record<string, unknown> }): ReactElement
 
   return (
     <div className={styles.tile}>
+      <img className={styles.image} src={formatedData.image} alt="" width={360} height={200} />
       <h3>
         <span className={styles.label}>Name: </span>
         {formatedData.name}

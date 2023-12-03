@@ -19,6 +19,7 @@ import { Button } from '@/components/ui';
 import { formSchema } from '@/schemas';
 import { RootState, setReactHookFormData } from '@/store';
 import styles from '@/styles/form.module.scss';
+import { getBase64 } from '@/utils';
 
 type ReactHookFormData = {
   name: string;
@@ -46,13 +47,15 @@ function ReactHookForm(): ReactElement {
     resolver: yupResolver(formSchema),
     mode: 'onChange',
   });
-  const onSubmit = (data: ReactHookFormData): void => {
+  async function onSubmit(data: ReactHookFormData): Promise<void> {
     if (!isFormValid()) {
       return;
     }
-    dispatch(setReactHookFormData(data));
+
+    const formatedData = { ...data, image: await getBase64(data.image) };
+    dispatch(setReactHookFormData(formatedData));
     navigate('/');
-  };
+  }
 
   function isFormValid(): boolean {
     return Object.keys(errors).length === 0;

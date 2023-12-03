@@ -18,6 +18,7 @@ import { Button } from '@/components/ui';
 import { formSchema } from '@/schemas';
 import { RootState, setUncontrolledFormData } from '@/store';
 import styles from '@/styles/form.module.scss';
+import { getBase64 } from '@/utils';
 
 function UncontrolledForm(): ReactElement {
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -27,26 +28,32 @@ function UncontrolledForm(): ReactElement {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>): void {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
+    const data = new FormData(e.currentTarget);
 
-    const form = {
-      name: formData.get('name'),
-      age: formData.get('age'),
-      country: formData.get('country'),
-      email: formData.get('email'),
-      password: formData.get('password'),
-      confirmPassword: formData.get('confirmPassword'),
-      gender: formData.get('gender'),
-      image: formData.get('image'),
-      agreement: !!formData.get('agreement'),
+    const formData = {
+      name: data.get('name'),
+      age: data.get('age'),
+      country: data.get('country'),
+      email: data.get('email'),
+      password: data.get('password'),
+      confirmPassword: data.get('confirmPassword'),
+      gender: data.get('gender'),
+      image: data.get('image'),
+      agreement: !!data.get('agreement'),
     };
 
     try {
-      isFormValid(form);
-      dispatch(setUncontrolledFormData(form));
+      isFormValid(formData);
+
+      if (!(formData.image instanceof File)) {
+        return;
+      }
+
+      formData.image = await getBase64(formData.image);
+      dispatch(setUncontrolledFormData(formData));
       navigate('/');
     } catch (err) {
       if (!(err instanceof ValidationError)) {
@@ -73,7 +80,7 @@ function UncontrolledForm(): ReactElement {
       <h1 className={styles.title}>
         <span>Unconrolled Form</span>
       </h1>
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={(e) => void handleSubmit(e)}>
         <NameInput errorMessage={errors.name} />
         <AgeInput errorMessage={errors.age} />
         <CountrySelector countries={countryList} errorMessage={errors.country} />

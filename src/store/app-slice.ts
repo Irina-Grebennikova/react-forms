@@ -1,8 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { getNames } from 'country-list';
 
-import { ReactHookFormData } from '@/pages/react-hook-form';
-
 const countries = getNames();
 
 const initialState = {
@@ -18,7 +16,7 @@ const appSlice = createSlice({
     setUncontrolledFormData(state, action: PayloadAction<Record<string, unknown>>) {
       state.uncontrolledFormData = action.payload;
     },
-    setReactHookFormData(state, action: PayloadAction<ReactHookFormData>) {
+    setReactHookFormData(state, action: PayloadAction<Record<string, unknown>>) {
       state.reactHookFormData = action.payload;
     },
   },

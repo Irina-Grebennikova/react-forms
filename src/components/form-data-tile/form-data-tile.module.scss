@@ -4,10 +4,16 @@
   border-radius: 10px;
   border: 2px solid cornflowerblue;
   font-size: 18px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
 
   & > *:not(:last-child) {
     margin-bottom: 15px;
   }
+}
+
+.image {
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .label {
