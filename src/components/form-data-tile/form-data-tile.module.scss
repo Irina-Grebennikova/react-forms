@@ -1,0 +1,16 @@
+.tile {
+  width: 400px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid cornflowerblue;
+  font-size: 18px;
+
+  & > *:not(:last-child) {
+    margin-bottom: 15px;
+  }
+}
+
+.label {
+  color: darken(cornflowerblue, 20%);
+  font-weight: 700;
+}

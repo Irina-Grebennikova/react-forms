@@ -7,7 +7,7 @@ const countries = getNames();
 
 const initialState = {
   countryList: countries,
-  unconrolledFormData: {},
+  uncontrolledFormData: {},
   reactHookFormData: {},
 };
 
@@ -15,8 +15,8 @@ const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    setUnconrolledFormData(state, action: PayloadAction<Record<string, unknown>>) {
-      state.unconrolledFormData = action.payload;
+    setUncontrolledFormData(state, action: PayloadAction<Record<string, unknown>>) {
+      state.uncontrolledFormData = action.payload;
     },
     setReactHookFormData(state, action: PayloadAction<ReactHookFormData>) {
       state.reactHookFormData = action.payload;
@@ -25,5 +25,5 @@ const appSlice = createSlice({
 });
 
 export const { reducer: appReducer } = appSlice;
-export const { setUnconrolledFormData, setReactHookFormData } = appSlice.actions;
+export const { setUncontrolledFormData, setReactHookFormData } = appSlice.actions;
 export { countries };

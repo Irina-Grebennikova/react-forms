@@ -1,7 +1,7 @@
 @import '@/styles/mixins.scss';
 
 .page {
-  padding: 15vh;
+  padding: 10vh;
   display: flex;
   gap: 5%;
   justify-content: center;
@@ -9,4 +9,8 @@
 
 .formData {
   min-width: 40%;
+  display: flex;
+  gap: 5vh;
+  flex-direction: column;
+  align-items: center;
 }

@@ -16,7 +16,7 @@ import {
 } from '@/components/form';
 import { Button } from '@/components/ui';
 import { formSchema } from '@/schemas';
-import { RootState, setUnconrolledFormData } from '@/store';
+import { RootState, setUncontrolledFormData } from '@/store';
 import styles from '@/styles/form.module.scss';
 
 function UncontrolledForm(): ReactElement {
@@ -46,7 +46,7 @@ function UncontrolledForm(): ReactElement {
 
     try {
       isFormValid(form);
-      dispatch(setUnconrolledFormData(form));
+      dispatch(setUncontrolledFormData(form));
       navigate('/');
     } catch (err) {
       if (!(err instanceof ValidationError)) {
