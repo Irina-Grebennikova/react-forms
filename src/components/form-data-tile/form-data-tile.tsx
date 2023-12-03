@@ -1,12 +1,18 @@
+import cn from 'classnames';
 import { ReactElement } from 'react';
 
 import styles from './form-data-tile.module.scss';
 
-function FormDataTile({ data }: { data: Record<string, unknown> }): ReactElement {
+type Props = {
+  data: Record<string, unknown>;
+  isDataUpdated: boolean;
+};
+
+function FormDataTile({ data, isDataUpdated }: Props): ReactElement {
   const formatedData = Object.fromEntries(Object.entries(data).map(([key, value]) => [key, String(value)]));
 
   return (
-    <div className={styles.tile}>
+    <div className={cn(styles.tile, { updated: isDataUpdated })}>
       <img className={styles.image} src={formatedData.image} alt="" width={360} height={200} />
       <h3>
         <span className={styles.label}>Name: </span>
