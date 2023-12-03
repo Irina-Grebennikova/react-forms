@@ -1,7 +1,8 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ReactElement } from 'react';
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import {
   AgeInput,
@@ -16,7 +17,7 @@ import {
 } from '@/components/form';
 import { Button } from '@/components/ui';
 import { formSchema } from '@/schemas';
-import { RootState } from '@/store';
+import { RootState, setReactHookFormData } from '@/store';
 import styles from '@/styles/form.module.scss';
 
 type ReactHookFormData = {
@@ -32,7 +33,10 @@ type ReactHookFormData = {
 };
 
 function ReactHookForm(): ReactElement {
-  const countryList = useSelector((state: RootState) => state.countries.countryList);
+  const countryList = useSelector((state: RootState) => state.app.countryList);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -46,7 +50,8 @@ function ReactHookForm(): ReactElement {
     if (!isFormValid()) {
       return;
     }
-    console.log(data);
+    dispatch(setReactHookFormData(data));
+    navigate('/');
   };
 
   function isFormValid(): boolean {

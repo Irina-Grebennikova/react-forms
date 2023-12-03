@@ -1,5 +1,6 @@
 import { FormEvent, ReactElement, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Yup, { Schema, ValidationError } from 'yup';
 
 import {
@@ -15,13 +16,16 @@ import {
 } from '@/components/form';
 import { Button } from '@/components/ui';
 import { formSchema } from '@/schemas';
-import { RootState } from '@/store';
+import { RootState, setUnconrolledFormData } from '@/store';
 import styles from '@/styles/form.module.scss';
 
 function UncontrolledForm(): ReactElement {
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const countryList = useSelector((state: RootState) => state.countries.countryList);
+  const countryList = useSelector((state: RootState) => state.app.countryList);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function handleSubmit(e: FormEvent<HTMLFormElement>): void {
     e.preventDefault();
@@ -42,6 +46,8 @@ function UncontrolledForm(): ReactElement {
 
     try {
       isFormValid(form);
+      dispatch(setUnconrolledFormData(form));
+      navigate('/');
     } catch (err) {
       if (!(err instanceof ValidationError)) {
         return;
