@@ -1,5 +1,7 @@
 import { boolean, mixed, number, object, ref, string } from 'yup';
 
+import { countries } from '@/store';
+
 const FIELD_REQUIRED = 'This field is required';
 const MAX_FILE_SIZE = 102400;
 
@@ -9,6 +11,8 @@ const formSchema = object().shape({
     .matches(/^[A-ZА-Я]/, 'Name must start with an uppercase letter'),
 
   age: number().required(FIELD_REQUIRED).positive().integer().typeError('Age must be a number'),
+
+  country: string().required('Please, select a country').oneOf(countries, 'Please, select a country from the list'),
 
   email: string()
     .required(FIELD_REQUIRED)

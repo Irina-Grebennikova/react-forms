@@ -19,7 +19,7 @@ function AgeInput({ register, errorMessage = '' }: Props): ReactElement {
         </label>
         <div className={styles.inputWrapper}>
           <input
-            className={'input ' + styles.inputField}
+            className={styles.input}
             type="number"
             {...(register ? register('age') : {})}
             name="age"

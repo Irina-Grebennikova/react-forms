@@ -1,11 +1,13 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ReactElement } from 'react';
 import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 
 import {
   AgeInput,
   AgreementCheckbox,
   ConfirmPasswordInput,
+  CountrySelector,
   EmailInput,
   GenderPicker,
   ImageLoader,
@@ -14,11 +16,13 @@ import {
 } from '@/components/form';
 import { Button } from '@/components/ui';
 import { formSchema } from '@/schemas';
+import { RootState } from '@/store';
 import styles from '@/styles/form.module.scss';
 
 type ReactHookFormData = {
   name: string;
   age: number;
+  country: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -28,6 +32,8 @@ type ReactHookFormData = {
 };
 
 function ReactHookForm(): ReactElement {
+  const countryList = useSelector((state: RootState) => state.countries.countryList);
+
   const {
     register,
     handleSubmit,
@@ -52,9 +58,10 @@ function ReactHookForm(): ReactElement {
       <h1 className={styles.title}>
         <span>React Hook Form</span>
       </h1>
-      <form className="form" onSubmit={(e) => void handleSubmit(onSubmit)(e)}>
+      <form className={styles.form} onSubmit={(e) => void handleSubmit(onSubmit)(e)}>
         <NameInput register={register} errorMessage={errors.name?.message} />
         <AgeInput register={register} errorMessage={errors.age?.message} />
+        <CountrySelector countries={countryList} register={register} errorMessage={errors.country?.message} />
         <EmailInput register={register} errorMessage={errors.email?.message} />
         <PasswordInput register={register} errorMessage={errors.password?.message} />
         <ConfirmPasswordInput register={register} errorMessage={errors.confirmPassword?.message} />

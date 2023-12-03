@@ -6,32 +6,40 @@ import { ReactHookFormData } from '@/pages/react-hook-form';
 import styles from '@/styles/form.module.scss';
 
 type Props = {
+  countries: string[];
   register?: UseFormRegister<ReactHookFormData>;
   errorMessage?: string;
 };
 
-function ConfirmPasswordInput({ register, errorMessage = '' }: Props): ReactElement {
+function CountrySelector({ countries, register, errorMessage = '' }: Props): ReactElement {
   return (
     <>
       <div className={styles.formField}>
-        <label htmlFor="confirm-password" className={styles.label}>
-          Confirm password
+        <label htmlFor="country" className={styles.label}>
+          Country
         </label>
+
         <div className={styles.inputWrapper}>
           <input
             className={styles.input}
-            {...(register ? register('confirmPassword') : {})}
-            type="password"
-            name="confirmPassword"
-            id="confirm-password"
-            autoComplete="password"
-            placeholder="Repeat password"
+            list="countries"
+            {...(register ? register('country') : {})}
+            id="country"
+            name="country"
+            autoComplete="country"
+            placeholder="Select country"
           />
         </div>
+
+        <datalist id="countries">
+          {countries.map((country) => (
+            <option key={country} value={country} />
+          ))}
+        </datalist>
       </div>
       <ErrorMessage text={errorMessage} />
     </>
   );
 }
 
-export { ConfirmPasswordInput };
+export { CountrySelector };

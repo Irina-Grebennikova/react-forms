@@ -1,10 +1,12 @@
 import { ReactElement } from 'react';
+import { Provider } from 'react-redux';
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 
 import { PageLayout } from '@/layouts/page-layout';
 import { MainPage } from '@/pages/main-page';
 import { ReactHookForm } from '@/pages/react-hook-form';
 import { UncontrolledForm } from '@/pages/uncontrolled-form';
+import { store } from '@/store';
 
 const routes = (
   <Route element={<PageLayout />}>
@@ -17,7 +19,11 @@ const routes = (
 const router = createBrowserRouter(createRoutesFromElements(routes));
 
 function App(): ReactElement {
-  return <RouterProvider router={router} />;
+  return (
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  );
 }
 
 export { App };

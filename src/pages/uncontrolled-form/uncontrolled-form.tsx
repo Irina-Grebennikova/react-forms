@@ -1,10 +1,12 @@
 import { FormEvent, ReactElement, useState } from 'react';
+import { useSelector } from 'react-redux';
 import Yup, { Schema, ValidationError } from 'yup';
 
 import {
   AgeInput,
   AgreementCheckbox,
   ConfirmPasswordInput,
+  CountrySelector,
   EmailInput,
   GenderPicker,
   ImageLoader,
@@ -13,10 +15,13 @@ import {
 } from '@/components/form';
 import { Button } from '@/components/ui';
 import { formSchema } from '@/schemas';
+import { RootState } from '@/store';
 import styles from '@/styles/form.module.scss';
 
 function UncontrolledForm(): ReactElement {
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const countryList = useSelector((state: RootState) => state.countries.countryList);
 
   function handleSubmit(e: FormEvent<HTMLFormElement>): void {
     e.preventDefault();
@@ -26,6 +31,7 @@ function UncontrolledForm(): ReactElement {
     const form = {
       name: formData.get('name'),
       age: formData.get('age'),
+      country: formData.get('country'),
       email: formData.get('email'),
       password: formData.get('password'),
       confirmPassword: formData.get('confirmPassword'),
@@ -58,9 +64,10 @@ function UncontrolledForm(): ReactElement {
       <h1 className={styles.title}>
         <span>Unconrolled Form</span>
       </h1>
-      <form className="form" onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <NameInput errorMessage={errors.name} />
         <AgeInput errorMessage={errors.age} />
+        <CountrySelector countries={countryList} errorMessage={errors.country} />
         <EmailInput errorMessage={errors.email} />
         <PasswordInput errorMessage={errors.password} />
         <ConfirmPasswordInput errorMessage={errors.confirmPassword} />

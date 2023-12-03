@@ -19,7 +19,7 @@ function PasswordInput({ register, errorMessage = '' }: Props): ReactElement {
         </label>
         <div className={styles.inputWrapper}>
           <input
-            className={'input ' + styles.inputField}
+            className={styles.input}
             {...(register ? register('password') : {})}
             type="password"
             name="password"

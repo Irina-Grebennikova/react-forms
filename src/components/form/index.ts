@@ -6,3 +6,4 @@ export { ConfirmPasswordInput } from './confirm-password-input';
 export { GenderPicker } from './gender-picker';
 export { ImageLoader } from './image-loader';
 export { AgreementCheckbox } from './agreement-checkbox';
+export { CountrySelector } from './country-selector';

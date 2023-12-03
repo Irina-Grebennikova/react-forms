@@ -1,4 +1,3 @@
-import cn from 'classnames';
 import { ReactElement } from 'react';
 import { UseFormRegister } from 'react-hook-form';
 
@@ -20,7 +19,7 @@ function EmailInput({ register, errorMessage = '' }: Props): ReactElement {
         </label>
         <div className={styles.inputWrapper}>
           <input
-            className={cn('input', styles.inputField)}
+            className={styles.input}
             type="text"
             {...(register ? register('email') : {})}
             name="email"
