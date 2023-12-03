@@ -38,6 +38,7 @@
 
 .inputWrapper {
   flex: auto;
+  position: relative;
 }
 
 .input {
@@ -71,4 +72,26 @@
 .submit {
   margin-top: 3vh;
   text-align: center;
+}
+
+.strengthBar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 5px;
+  transition: 0.5s;
+
+  &.weak {
+    width: 33%;
+    background-color: red;
+  }
+  &.medium {
+    width: 66%;
+    background-color: orange;
+  }
+  &.strong {
+    width: 100%;
+    background-color: green;
+  }
 }

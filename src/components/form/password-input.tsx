@@ -1,4 +1,5 @@
-import { ReactElement } from 'react';
+import cn from 'classnames';
+import { ChangeEvent, ReactElement, useState } from 'react';
 import { UseFormRegister } from 'react-hook-form';
 
 import { ErrorMessage } from '@/components/ui';
@@ -10,7 +11,35 @@ type Props = {
   errorMessage?: string;
 };
 
+type StrengthValue = 'weak' | 'medium' | 'strong' | '';
+
 function PasswordInput({ register, errorMessage = '' }: Props): ReactElement {
+  const [strength, setStrength] = useState<StrengthValue>('');
+
+  function checkStrength(e: ChangeEvent<HTMLInputElement>): void {
+    const password = e.target.value;
+
+    const isStrong = // eslint-disable-next-line
+      /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#%^&*()_+={}[\]|;':",.\/<>?~`-])(?=.*[^A-Za-z0-9])(?=.{6,})/.test(
+        password
+      );
+    if (isStrong) {
+      setStrength('strong');
+      return;
+    }
+    const isMedium = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{4,})/.test(password);
+    if (isMedium) {
+      setStrength('medium');
+      return;
+    }
+    const isWeak = /./.test(password);
+    if (isWeak) {
+      setStrength('weak');
+      return;
+    }
+    setStrength('');
+  }
+
   return (
     <>
       <div className={styles.formField}>
@@ -26,7 +55,9 @@ function PasswordInput({ register, errorMessage = '' }: Props): ReactElement {
             id="password"
             autoComplete="password"
             placeholder="Type a strong password"
+            onChange={checkStrength}
           />
+          <div className={cn(styles.strengthBar, styles[strength])}></div>
         </div>
       </div>
       <ErrorMessage text={errorMessage} />
