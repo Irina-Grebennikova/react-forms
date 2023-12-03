@@ -1,1 +1,1 @@
-export { ReactHookForm } from './react-hook-form';
+export { ReactHookForm, type ReactHookFormData } from './react-hook-form';

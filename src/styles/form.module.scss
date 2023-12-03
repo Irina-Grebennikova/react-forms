@@ -16,10 +16,13 @@
 }
 
 .formField {
-  margin-bottom: 3vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  &:not(:first-of-type) {
+    margin-top: 2vh;
+  }
 }
 
 .label {
@@ -40,7 +43,11 @@
 .acceptField {
   display: flex;
   gap: 5px;
-  margin-top: 4vh;
+  margin-top: 3vh;
+
+  & + * {
+    padding-left: 0;
+  }
 }
 
 .genderFields {

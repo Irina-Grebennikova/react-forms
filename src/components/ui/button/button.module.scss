@@ -6,6 +6,11 @@
   color: #fff;
   font-size: 18px;
   background-color: cornflowerblue;
+  transition: 0.2s;
+
+  &:disabled {
+    opacity: 0.5;
+  }
 
   @include hover {
     background-color: lighten($color: cornflowerblue, $amount: 10%);

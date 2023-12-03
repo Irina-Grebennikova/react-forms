@@ -58,7 +58,9 @@ input::-ms-clear {
   display: none;
 }
 
-button {
+input[type='radio'],
+input[type='checkbox'],
+button:not([disabled]) {
   cursor: pointer;
 }
 
