@@ -52,13 +52,16 @@ function UncontrolledForm(): ReactElement {
       if (!(err instanceof ValidationError)) {
         return;
       }
+      const newErrors: Record<string, string> = {};
 
       err.inner.forEach((error) => {
-        if (!error.path || errors[error.path] !== undefined) {
+        if (!error.path || newErrors[error.path] !== undefined) {
           return;
         }
-        setErrors((prev) => ({ ...prev, [error.path!]: error.message }));
+        newErrors[error.path] = error.message;
       });
+
+      setErrors(newErrors);
     }
   }
 
