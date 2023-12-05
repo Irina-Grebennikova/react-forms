@@ -1,0 +1,29 @@
+.tile {
+  width: 400px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid cornflowerblue;
+  font-size: 18px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+  transition: 0.4s;
+
+  &:global(.updated) {
+    border-color: green;
+    box-shadow: 0 0 10px 5px rgba(0, 255, 0, 0.4);
+    background-color: rgba($color: green, $alpha: 0.1);
+  }
+
+  & > *:not(:last-child) {
+    margin-bottom: 15px;
+  }
+}
+
+.image {
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.label {
+  color: darken(cornflowerblue, 20%);
+  font-weight: 700;
+}

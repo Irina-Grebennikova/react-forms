@@ -1,0 +1,97 @@
+.page {
+  padding: 7vh 0;
+}
+
+.title {
+  margin-bottom: 4vh;
+  text-align: center;
+
+  & > * {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 20px 0 20px 0;
+    font-size: 28px;
+    background-color: rgba($color: cornflowerblue, $alpha: 0.2);
+  }
+}
+
+.form {
+  width: 45%;
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 17px;
+}
+
+.formField {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &:not(:first-of-type) {
+    margin-top: 2vh;
+  }
+}
+
+.label {
+  flex: 0 1 25%;
+}
+
+.inputWrapper {
+  flex: auto;
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: inherit;
+  background-color: #f1f1f1;
+}
+
+.acceptField {
+  display: flex;
+  gap: 5px;
+  margin-top: 3vh;
+
+  & + * {
+    padding-left: 0;
+  }
+}
+
+.genderFields {
+  input {
+    margin-right: 5px;
+  }
+
+  label:first-of-type {
+    margin-right: 15px;
+  }
+}
+
+.submit {
+  margin-top: 3vh;
+  text-align: center;
+}
+
+.strengthBar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 5px;
+  transition: 0.5s;
+
+  &.weak {
+    width: 33%;
+    background-color: red;
+  }
+  &.medium {
+    width: 66%;
+    background-color: orange;
+  }
+  &.strong {
+    width: 100%;
+    background-color: green;
+  }
+}

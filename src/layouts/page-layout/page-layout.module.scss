@@ -1,0 +1,17 @@
+@import '@/styles/mixins.scss';
+
+.header {
+  text-align: center;
+  padding: 5vh 0;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.link {
+  color: inherit;
+  font-weight: 700;
+  transition: 0.2s;
+
+  @include hover {
+    color: gray;
+  }
+}
